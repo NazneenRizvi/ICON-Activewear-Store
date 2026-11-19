@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+
+# Local safety backups
+*.bak
+*.backup
+.git_backup/
+
+# Credentials, Service Accounts and Private Keys
+*serviceAccount*.json
+*service-account*.json
+*credentials*.json
+firebase-admin*.json
+*.pem
+*.key
+*.local-backup
+*.github
+tore --staged src/components/CustomerOrdersModal.tsx.currency-backupecho server.ts.bak
+*.bak*
+*.currency-backup

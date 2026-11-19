@@ -1,0 +1,31 @@
+ICON / Dubai Activewear — cleaned handoff package
+
+This package was prepared from the uploaded Dubai-Activewear-Working-fixed.zip.
+
+Safety/packaging changes made in this handoff copy:
+- Removed .env (never distribute or commit local environment secrets).
+- Removed dist/ build output and node_modules/ dependencies; reinstall with npm ci.
+- Added .gitignore for .env, node_modules, dist and local files.
+- Sanitized .env.example owner email and removed the phone placeholder.
+- Added firestore.rules with deny-all client rules as a proposed safe baseline.
+- Removed stale ProductDetailModal backup copies.
+
+IMPORTANT: This is NOT a claim that every audit finding has been fixed.
+The uploaded ZIP was the original audit input/backup, not the separate hardened ZIP
+mentioned in the security report. The following require further implementation and
+live verification before real customer use:
+- C-2: Firebase UID-based order ownership and verified-email legacy handling.
+- H-3: authenticated order creation, token-derived identity, safe duplicate handling,
+  server-generated timestamps, image URL validation and rate limits.
+- M-1/M-2: CORS allowlist and API rate limiting.
+- H-1: preserve cart/wishlist during initial asynchronous auth restoration.
+- H-4: server-backed product catalog (currently browser-local only).
+- C-1: payment provider and verified webhook-driven order creation. Checkout must
+  remain disabled until a provider is selected and integrated.
+- M-3 to M-7 and L-1 to L-4: pagination, cancelled-order revenue handling, soft delete,
+  currency alignment, newsletter backend, owner UI verification and input limits.
+
+Do NOT deploy firestore.rules blindly without checking the current live rules and
+confirming that all client Firestore access is intentionally prohibited. Admin SDK
+server access bypasses Firestore rules. Do not upload any .env file to GitHub.
+No production data, Firebase rules, hosting settings, or live services were changed.
