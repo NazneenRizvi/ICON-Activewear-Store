@@ -1,7 +1,7 @@
 
 import { initializeApp, getApps, applicationDefault, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
-import { normalizeOrders } from '../lib/orders.ts';
+import { normalizeOrders } from '../lib/orders';
 
 // Trusted server-only SDK. Never put service account credentials into VITE_* variables.
 const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;

@@ -24,16 +24,19 @@ const projectId =
 
 const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
 
-const adminApp =
-  getApps()[0] ||
-  initializeApp({
-    credential: serviceAccount
-      ? cert(JSON.parse(serviceAccount))
-      : applicationDefault(),
-    projectId,
-  });
-
-const adminAuth = getAuth(adminApp);
+let adminAuth: ReturnType<typeof getAuth> | null = null;
+function getAdminAuth() {
+  if (adminAuth) return adminAuth;
+  const app = getApps()[0] ||
+    initializeApp({
+      credential: serviceAccount
+        ? cert(JSON.parse(serviceAccount))
+        : applicationDefault(),
+      projectId,
+    });
+  adminAuth = getAuth(app);
+  return adminAuth;
+}
 
 async function verifyFirebaseToken(req: AuthRequest) {
   const authHeader = req.headers.authorization;
@@ -50,7 +53,8 @@ async function verifyFirebaseToken(req: AuthRequest) {
 
   // Firebase Admin SDK verifies the ID token signature,
   // expiration, issuer and Firebase project.
-  const decoded = await adminAuth.verifyIdToken(token, true);
+  const auth = getAdminAuth();
+  const decoded = await auth.verifyIdToken(token, true);
 
   req.user = {
     uid: decoded.uid,

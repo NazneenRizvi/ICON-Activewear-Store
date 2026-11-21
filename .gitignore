@@ -1,5 +1,6 @@
 node_modules/
 dist/
+api/index.js
 .env
 .env.*
 !.env.example
@@ -9,6 +10,7 @@ dist/
 # Local safety backups
 *.bak
 *.backup
+*.backup_runner
 .git_backup/
 
 # Credentials, Service Accounts and Private Keys
@@ -20,6 +22,5 @@ firebase-admin*.json
 *.key
 *.local-backup
 *.github
-tore --staged src/components/CustomerOrdersModal.tsx.currency-backupecho server.ts.bak
 *.bak*
 *.currency-backup
