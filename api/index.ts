@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import app from '../src/app.js';
 
+import app from '../src/app';
 export default function handler(req: IncomingMessage, res: ServerResponse) {
   // Catch-all URL preservation:
   // If Vercel router rewrote req.url (e.g. to '/api/index.ts' or '/api'),
