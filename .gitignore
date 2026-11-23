@@ -24,3 +24,6 @@ firebase-admin*.json
 *.github
 *.bak*
 *.currency-backup
+
+.vercel
+.env*

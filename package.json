@@ -4,13 +4,15 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "vercel-build": "npm run build",
     "dev": "node --import tsx server.ts",
-    "build": "vite build",
+    "build": "npm run bundle:server && vite build",
     "preview": "node --import tsx server.ts",
     "start": "node --import tsx server.ts",
     "lint": "tsc --noEmit",
     "db:push": "drizzle-kit push --config=src/db/drizzle.config.ts",
-    "test": "node --import tsx --test tests/*.test.ts"
+    "test": "node --import tsx --test tests/*.test.ts",
+    "bundle:server": "esbuild src/app.ts --bundle --packages=external --platform=node --format=esm --target=node22 --outfile=api/app.js"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
