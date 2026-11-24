@@ -27,3 +27,5 @@ firebase-admin*.json
 
 .vercel
 .env*
+*firebase-adminsdk*.json
+api/app.js
